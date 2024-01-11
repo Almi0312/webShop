@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+<form th:object="${product}" th:action="@{/add}"  method="post">
+    <table align="center">
+        <tr>
+            <td>Название</td>
+            <td><input type="text" id="new_title" th:field="*{title}"></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td>Фото</td>-->
+<!--            <td><input type="file" id="new_file" th:field="*{image}"></td>-->
+<!--        </tr>-->
+        <tr>
+            <td>Цена</td>
+            <td><input type="number" id="price" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Описание</td>
+            <td><input type="text" id="new_description" th:field="*{description}"></td>
+        </tr>
+        <tr>
+            <td>Категория</td>
+            <td><select class="form-select" aria-label="Default select example">
+               <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select></td>
+        </tr>
+    </table>
+    <button id="send" type="submit">Submit</button>
+</form>
+</body>
+</html>

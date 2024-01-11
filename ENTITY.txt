@@ -1,0 +1,53 @@
+1. Товары (Products):
+-id
+-name
+-description
+-price
+-image
+-categories
+
+2. Пользователь (User)
+-id
+-name
+-username
+-email
+-password
+-role
+-address
+-archive
+-phone
+
+3. Роли (role)
+-ADMIN
+-USER
+-GUEST
+-MANAGER
+
+4. Заказы (Orders):
+-id
+-created date
+-last changed date
+-address
+-user_id
+-status {NEW, CANCEL, PAID, CLOSED, RETURNED}
+-details {product_id, price, amount, comment}
+
+5. Категории товаров (Categories):
+-id
+-name
+
+6. Корзины (Buckets):
+-id
+-user_id
+-details {product, amount} / productList
+
+_____________________________________________
+6. Отзывы (Reviews): Отзывы клиентов о товарах, содержащие оценку, комментарий и дату написания.
+
+7. Складской учет (Inventory): Информация о количестве товаров на складе, чтобы следить за наличием товаров.
+
+8. Акции и скидки (Promotions): Данные о текущих акциях, скидках и промо-кодах.
+
+10. Доставка (Shipping): Информация о способах доставки, стоимости и времени доставки.
+
+11. Оплата (Payment): Информация о доступных методах оплаты, включая кредитные карты, электронные кошельки и другие.
