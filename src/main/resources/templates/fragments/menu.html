@@ -5,39 +5,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
-<table id="nav-menu" width="100%">
-    <tr>
-        <td align="center">
-            <table>
-                <tr>
-                    <td>Меню -></td>
-                    <td><a th:href="@{/}">Home</a></td>
-                    <td><a th:href="@{/products}">Продукты</a></td>
-<!--                    Если под ролью ADMIN или Manager, то видно колонку с пользователями, если нет, то не видно, так же и с корзиной-->
-                    <td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')"><a th:href="@{/users}">Пользователи</a></td>
-                    <td sec:authorize="isAuthenticated()"><a th:href="@{/bucket}">Корзина</a></td>
-                </tr>
-            </table>
-        </td>
-        <td align="right">
+<header id = "nav-menu" class="header">
+    <div class="container">
+
+        <section class="header__inner">
+            <div class="header__logo">
+                <img class="ecorn_image" src="/image/Ecorn.jpg">
+            </div>
+            <div class="search">
+                <form th:action="@{/}">
+                    <input type="text" name="keyword" id="keyword" size="30" th:value="${keyword}" required/>
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
             <div sec:authorize="isAuthenticated()">
                 <div>
                     Привет, <a th:href="@{/users/profile}"><span sec:authentication="principal.username">Bill</span></a>
                 </div>
                 <div>
-                    <a th:href="@{/logout}">Logout</a>
+                    <a th:href="@{/logout}">Выход</a>
                 </div>
             </div>
-
             <div sec:authorize="!isAuthenticated()">
                 <div>
-                    Привет. Если хочешь купить, то <a th:href="@{/login}">Login</a>
+                    Привет! Если захочешь купить, то <a th:href="@{/login}">залогинься</a>!
                 </div>
             </div>
-        </td>
-    </tr>
-</table>
+        </section>
+
+        <div class="header__inner">
+            <nav class="nav">
+                <a class="nav__link" th:href="@{/}">Home</a>
+                <a class="nav__link" th:href="@{/products}">Продукты</a>
+                <a class="nav__link" sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{/users}">Пользователи</a>
+                <a class="nav__link" sec:authorize="isAuthenticated()" th:href="@{/bucket}">Корзина</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<th:block th:fragment="scripts">
+    <script type="text/javascript">
+        function clearSearch(){
+            window.location="[[@{/}]]";
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/cb1406c3c9.js" crossorigin="anonymous"></script>
+</th:block>
 </body>
 </html>
