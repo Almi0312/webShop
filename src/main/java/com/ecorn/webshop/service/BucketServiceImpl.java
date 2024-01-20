@@ -4,6 +4,7 @@ import com.ecorn.webshop.dao.BucketRepository;
 import com.ecorn.webshop.dao.ProductRepository;
 import com.ecorn.webshop.dto.BucketDTO;
 import com.ecorn.webshop.dto.BucketDetailDTO;
+import com.ecorn.webshop.dto.ProductDTO;
 import com.ecorn.webshop.entity.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

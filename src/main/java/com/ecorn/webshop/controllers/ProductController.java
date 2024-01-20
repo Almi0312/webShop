@@ -1,21 +1,21 @@
 package com.ecorn.webshop.controllers;
 
+import com.ecorn.webshop.convertations.MultipartFileToImageConverter;
 import com.ecorn.webshop.dto.ProductDTO;
 import com.ecorn.webshop.entity.Category;
+import com.ecorn.webshop.entity.Image;
 import com.ecorn.webshop.entity.Product;
 import com.ecorn.webshop.service.CategoryService;
 import com.ecorn.webshop.service.ProductService;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import com.ecorn.webshop.service.SessionObjectHolder;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProductController {
@@ -32,7 +32,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public String list(Model model) {
-        List<Product> list = productService.getAll();
+        List<ProductDTO> list = productService.getAll();
         model.addAttribute("product", list);
         return "products";
     }
@@ -54,18 +54,21 @@ public class ProductController {
     }
 
     @GetMapping("/products/edit/{id}")
-    public String updateProduct(@PathVariable(name = "id") Long id, Model model) throws ChangeSetPersister.NotFoundException {
-        model.addAttribute("product", productService.getById(id).orElseThrow(ChangeSetPersister.NotFoundException :: new));
-        return "new_product";
+    public String updateProduct(@PathVariable(name = "id") Long id, Model model) {
+        ProductDTO product = productService.getById(id);
+        model.addAttribute("product", product);
+        return "edit_product";
     }
 
     @PostMapping("/products/save")
-    public String addProduct(@ModelAttribute("product") Product product){
-        productService.addOrUpdateProduct(product);
+    public String addProduct(@ModelAttribute("product") ProductDTO product,
+                             @RequestParam("image1") MultipartFile multImages1) {
+        Image image = new MultipartFileToImageConverter().convert(multImages1);
+
+        productService.addOrUpdateProduct(product, image);
         return "redirect:/products";
     }
 
-//    @PreAuthorize("hasAuthority({'ADMIN','MANAGER'})")
     @GetMapping("/products/new_product")
     public String addProductForProductList(Model model){
         List<Category> categories = categoryService.getAll();
@@ -75,7 +78,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getById(@PathVariable Long id) throws ChangeSetPersister.NotFoundException {
-        return productService.getById(id).orElseThrow(ChangeSetPersister.NotFoundException::new);
+    public ProductDTO getById(@PathVariable Long id){
+        return productService.getById(id);
     }
 }

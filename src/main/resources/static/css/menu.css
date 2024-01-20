@@ -1,6 +1,6 @@
 .ecorn_image {
-    width: 250px;
-    height: 135px;
+    width: 200px;
+    height: 100px;
 }
 
 body {
@@ -14,6 +14,8 @@ body {
     width: 100%;
     max-width: 1170px;
     margin: 0 auto;
+
+    border-bottom: 1px solid #515369;
 }
 
 
@@ -28,14 +30,14 @@ body {
 .super__header {
     display: flex;
     justify-content: space-between;
+    font-family: Raleway, sans-serif;
     padding: 30px 0;
     border-bottom: 1px solid #515369;
     align-items: center;
 }
 .header{
     margin: 0 auto;
-
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Kaushan', sans-serif;
     font-size: 14px;
     color: #9966CC;
     background-color: #E6E6FA;
@@ -44,7 +46,7 @@ body {
 .header__inner {
     display: flex;
     justify-content: space-between;
-    padding: 30px 0 10px 0;
+    padding: 30px 0 0 0;
     align-items: center;
 }
 
@@ -53,14 +55,13 @@ body {
 =======================*/
 .nav{
     display: flex;
-    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-
 }
 
 .nav__link{
     margin-left: 50px;
+    padding: 10px;
     color: #9966CC;
     text-decoration: none;
     opacity: 0.75;
@@ -73,5 +74,75 @@ body {
 }
 
 .nav__link:hover{
+    opacity: 1;
+}
+
+
+/*PRODUCT LIST
+=============================*/
+.product-list {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.product_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product-name {
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-card h2 {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    color: black;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.product-card .price {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.product-card .btn-product {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #1CAC78;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.product-card .btn:hover {
     opacity: 1;
 }

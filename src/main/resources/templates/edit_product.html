@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование</title>
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<form th:object="${product}" th:action="@{/products/save}"  method="post" enctype="multipart/form-data">
+  <table align="center">
+    <tr>
+      <td>Название</td>
+      <td>
+        <input type="text" id="title" name="title" th:field="*{title}">
+      </td>
+    </tr>
+    <tr>
+      <td>Фото</td>
+      <td>
+        <input type="file" id="image1" name="image1">
+      </td>
+    </tr>
+    <tr>
+      <td>Цена</td>
+      <td>
+        <input type="number" id="price" name="price" th:field="*{price}">
+      </td>
+    </tr>
+    <tr>
+      <td>Описание</td>
+      <td>
+        <input type="text" id="description" name="description" th:field="*{description}">
+      </td>
+    </tr>
+  </table>
+  <button id="send" type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

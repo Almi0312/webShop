@@ -10,6 +10,8 @@ drop sequence if exists product_seq;
 create sequence product_seq start with 1 increment by 1;
 drop sequence if exists user_seq;
 create sequence user_seq start with 1 increment by 1;
+drop sequence if exists image_seq;
+create sequence image_seq start with 1 increment by 1;
 
 drop table if exists buckets cascade;
 create table buckets (
@@ -57,7 +59,7 @@ create table products (
                           category_id bigint,
                           description varchar(255),
                           title varchar(255),
-                          image bytea
+                          image oid
 );
 
 
@@ -75,6 +77,15 @@ create table users (
                        created timestamp(6)
 );
 
+drop table if exists product_images cascade;
+create table product_images (
+                        id bigint PRIMARY KEY,
+                        product_id bigint,
+                        title varchar(255),
+                        url text
+                            );
+
+
 alter table if exists buckets add constraint buckets_user_id_FK foreign key (user_id) references users;
 alter table if exists buckets_products add constraint buckets_product_id_FK foreign key (product_id) references products;
 alter table if exists buckets_products add constraint product_buckets_id_FK foreign key (bucket_id) references buckets;
@@ -82,3 +93,4 @@ alter table if exists order_details add constraint order_details_order_id_FK for
 alter table if exists order_details add constraint orders_details_fk_product foreign key (product_id) references products;
 alter table if exists orders add constraint order_user_id_FK foreign key (user_id) references users;
 alter table if exists products add constraint products_category_id_FK foreign key (category_id) references categories;
+alter table if exists product_images add constraint prod_images_prod_id foreign key (product_id) references products;

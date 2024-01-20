@@ -7,8 +7,10 @@
     <title>Product list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <!--STOMP-->
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -18,41 +20,31 @@
     <script src="/product.js"></script>
 </head>
 <body>
-<div th:insert="~{fragments/menu :: #nav-menu}">
-</div>
-<div>
-    <a th:href="@{products/new_product}">
-        <button sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" type="button">
-            Добавить продукт</button>
-    </a>
-    <div>
-        <table border="1" align="center" id="table">
-            <thead>
-            <tr>
-                <th>Идентификатор</th>
-                <th>Название</th>
-                <th>Цена</th>
-                <th>Действия</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="produc : ${product}">
-                <th th:text="${produc.id}">2</th>
-                <th th:text="${produc.title}">Кофта</th>
-                <th th:text="${produc.price}">120.00</th>
-                <td>
-                    <a th:href="@{/products/{id}/bucket(id=${produc.id})}">Добавить в корзину</a>
-                    <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{/products/edit/{id}(id=${produc.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{/products/delete/{id}(id=${produc.id})}"><i class="fa-solid fa-trash"></i></a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<script th:replace="fragments/menu :: scripts"></script>
+
+<a class="btd-add-new-product" th:href="@{products/new_product}">
+    <button sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" type="button">
+        Добавить продукт</button>
+</a>
+
+<div class="product-list"></div>
+<div class="product_container">
+
+    <div class="product-card" th:each="produc : ${product}">
+        <p th:text="${produc.id}"></p>
+        <div th:each="image : ${produc.images}">
+            <img th:src=""data:image/jpeg;base64,[тут_код_картинки_в_base64]"@{${image.data}}" alt="Image">
+        </div>
+        <h2 class="product-name" th:text="${produc.title}">Название продукта </h2>
+        <p th:text="${produc.description}">1000 руб.</p>
+        <p class="price" th:text="${produc.price}">1000 руб.</p>
+        <a th:href="@{'/products/'+${produc.id}+'/bucket'}" class="btn-product">Купить</a>
+        <div>
+            <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${produc.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/delete/' + ${produc.id}}"><i class="fa-solid fa-trash"></i></a>
+        </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/cb1406c3c9.js" crossorigin="anonymous"></script>
 </body>
 </html>

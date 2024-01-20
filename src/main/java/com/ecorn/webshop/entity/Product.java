@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +28,9 @@ public class Product {
     private String title;
     private String description;
     private BigDecimal price;
-    private byte[] image;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<Image> images;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category categories;

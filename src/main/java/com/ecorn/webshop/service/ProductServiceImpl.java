@@ -1,34 +1,36 @@
 package com.ecorn.webshop.service;
 
 import com.ecorn.webshop.dao.ProductRepository;
+import com.ecorn.webshop.dto.ProductDTO;
 import com.ecorn.webshop.entity.Bucket;
+import com.ecorn.webshop.entity.Image;
 import com.ecorn.webshop.entity.Product;
 import com.ecorn.webshop.entity.User;
+import com.ecorn.webshop.mapper.ProductMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+    private final ProductMapper mapper = ProductMapper.MAPPER;
+
     private final ProductRepository productRepository;
     private final UserService userService;
     private final BucketService bucketService;
 
-    public ProductServiceImpl(ProductRepository productRepository,
-                              UserService userService,
-                              BucketService bucketService
-    ) {
+    public ProductServiceImpl(ProductRepository productRepository, UserService userService, BucketService bucketService) {
         this.productRepository = productRepository;
         this.userService = userService;
         this.bucketService = bucketService;
     }
 
     @Override
-    public List<Product> getAll() {
-        return productRepository.findAll();
+    public List<ProductDTO> getAll() {
+        return mapper.fromProductList(productRepository.findAll());
     }
 
     @Override
@@ -51,14 +53,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public void addOrUpdateProduct(Product product) {
+    public void addOrUpdateProduct(ProductDTO productDTO, Image image) {
+        Product product = mapper.toProduct(productDTO);
+
         productRepository.save(product);
     }
 
     @Override
     @Transactional
-    public Optional<Product> getById(Long id) {
-        return productRepository.findById(id);
+    public ProductDTO getById(Long id) {
+        Product product = productRepository.findById(id).orElse(new Product());
+        return ProductMapper.MAPPER.fromProduct(product);
     }
 
     @Override
