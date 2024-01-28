@@ -66,9 +66,9 @@ public class ProductController {
 
     @PostMapping("/products/save")
     public String addProduct(@ModelAttribute("product") Product product,
-                            @RequestParam("image1") MultipartFile image1,
-                            @RequestParam("image2") MultipartFile image2,
-                            @RequestParam("image3") MultipartFile image3) {
+                            @RequestParam("file1") MultipartFile image1,
+                            @RequestParam("file2") MultipartFile image2,
+                            @RequestParam("file3") MultipartFile image3) {
         try {
             productService.addOrUpdateProduct(product, image1, image2, image3);
         }catch (IOException e){

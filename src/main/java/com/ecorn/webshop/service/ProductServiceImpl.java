@@ -1,5 +1,6 @@
 package com.ecorn.webshop.service;
 
+import com.ecorn.webshop.convertations.MultipartFileToImageConverter;
 import com.ecorn.webshop.dao.ProductRepository;
 import com.ecorn.webshop.entity.Bucket;
 import com.ecorn.webshop.entity.Image;
@@ -61,16 +62,16 @@ public class ProductServiceImpl implements ProductService {
         Image image2;
         Image image3;
         if(file1.getSize() != 0){
-            image1 = toImageEntity(file1);
+            image1 = new MultipartFileToImageConverter().convert(file1);
             image1.setPreviewImage(true);
             product.addImageToProduct(image1);
         }
         if(file2.getSize() != 0){
-            image2 = toImageEntity(file2);
+            image2 = new MultipartFileToImageConverter().convert(file2);
             product.addImageToProduct(image2);
         }
         if(file3.getSize() != 0){
-            image3 = toImageEntity(file3);
+            image3 = new MultipartFileToImageConverter().convert(file3);
             product.addImageToProduct(image3);
         }
         log.info("Saving new Product {};", product.getTitle());
@@ -78,16 +79,6 @@ public class ProductServiceImpl implements ProductService {
         Product productFromDb = productRepository.save(product);
         productFromDb.setPreviewImageId(productFromDb.getImages().get(0).getId());
         productRepository.save(product);
-    }
-
-    private Image toImageEntity(MultipartFile file) throws IOException {
-        Image image = new Image();
-        image.setTitle(file.getName());
-        image.setOriginalFileName(file.getOriginalFilename());
-        image.setContentType(file.getContentType());
-        image.setSize(file.getSize());
-        image.setBytes(file.getBytes());
-        return image;
     }
 
     @Override

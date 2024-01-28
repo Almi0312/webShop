@@ -29,9 +29,9 @@
         <h3>Информация о товаре</h3>
         <p th:text="${product.id}"></p>
         <div>
-            <img th:src="/api/images/${products.images.get(0)}" heigth="60px"><br>
-            <img th:src="/api/images/${products.images.get(1)?if_exists}" heigth="60px"><br>
-            <img th:src="/api/images/${products.images.get(2)?if_exists}" heigth="60px"><br>
+            <img th:src="/api/images/${product.images.get(0)}"><br>
+            <img th:src="/api/images/${product.images.get(1)}"><br>
+            <img th:src="/api/images/${product.images.get(2)}"><br>
         </div>
         <h2 class="product-name" th:text="${product.title}">Название продукта </h2>
         <p class="price" th:text="${product.price}">1000 руб.</p>
