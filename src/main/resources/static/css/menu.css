@@ -77,6 +77,34 @@ body {
     opacity: 1;
 }
 
+/*FORM
+=============================*/
+
+.product-form-container{
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center
+
+}
+
+.product-form{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.header-label-form{
+    padding: 10px 0;
+    color: black;
+    font-family: Cambria, sans-serif;
+}
+
+.input-form{
+
+}
 
 /*PRODUCT LIST
 =============================*/
@@ -144,5 +172,22 @@ body {
 }
 
 .product-card .btn:hover {
+    opacity: 1;
+}
+
+.default-btn{
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 100;
+    background-color: #1CAC78;
+    width: 100px;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.default-btn:hover {
     opacity: 1;
 }

@@ -9,32 +9,65 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<form th:object="${product}" th:action="@{/products/save}"  method="post" enctype="multipart/form-data">
-    <table align="center">
-        <tr>
-            <td>Название</td>
-            <td><input type="text" id="title" name="title" th:field="*{title}"></td>
-        </tr>
-        <tr>
-            <td>Фото</td>
-            <td><input type="file" id="image1" name="image1"></td>
-        </tr>
-        <tr>
-            <td>Цена</td>
-            <td><input type="number" id="price" th:field="*{price}"></td>
-        </tr>
-        <tr>
-            <td>Описание</td>
-            <td><input type="text" id="new_description" th:field="*{description}"></td>
-        </tr>
-        <tr>
-            <td>Категория</td>
-            <td><select class="form-select" aria-label="Default select example">
-               <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-            </select></td>
-        </tr>
-    </table>
-    <button id="send" type="submit">Submit</button>
+<form th:object="${product}" th:action="@{/products/save}"  method="post">
+    <div class="product-form-container" style="align-content: center">
+        <div class="product-form">
+
+            <div class="header-label-form">
+                <label for="title">Название</label>
+                    <div>
+                        <input type="text" id="title" name="title" th:field="*{title}" required>
+                    </div>
+            </div>
+
+            <div class="header-label-form">
+                <label for="images">Путь до фото</label>
+                <div class="input-form">
+                    <input type="text" id="images" th:field="*{images[0]}" class="form-control" required>
+                    <button type="button" id="addImageField" class="btn btn-primary">Добавить еще изображение</button>
+                </div>
+            </div>
+
+            <div class="header-label-form">
+                <label for="price">Цена</label>
+                <div class="input-form">
+                    <input type="number" id="price" th:field="*{price}" required>
+                </div>
+            </div>
+
+            <div class="header-label-form">
+                <label for="description">Описание</label>
+                <div class="input-form">
+                    <input type="text" id="description" th:field="*{description}" required>
+                </div>
+             </div>
+
+            <div class="header-label-form">
+                <label for="categories">Категория</label>
+                <select id="categories" class="form-select" aria-label="Default select example" required>
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </div>
+
+            <button class="default-btn" id="send" type="submit" th:size="20">Submit</button>
+
+        </div>
+    </div>
 </form>
+
+<script>
+    var imageFieldIndex = 1;
+
+    document.getElementById('addImageField').addEventListener('click', function() {
+        var imagesDiv = document.getElementById('images');
+        var newImageField = document.createElement('input');
+        newImageField.type = 'text';
+        newImageField.name = 'images[' + imageFieldIndex + ']';
+        newImageField.className = 'form-control';
+        newImageField.required = true;
+        imagesDiv.appendChild(newImageField);
+        imageFieldIndex++;
+    });
+</script>
 </body>
 </html>

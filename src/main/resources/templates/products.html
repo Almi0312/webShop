@@ -33,7 +33,9 @@
 
     <div class="product-card" th:each="produc : ${product}">
         <p th:text="${produc.id}"></p>
-        <img th:src="@{produc.image1}">
+        <div th:each="imag : ${images}">
+            <img th:src="@{image}" alt="error">
+        </div>
         <h2 class="product-name" th:text="${produc.title}">Название продукта </h2>
         <p th:text="${produc.description}">1000 руб.</p>
         <p class="price" th:text="${produc.price}">1000 руб.</p>
@@ -44,5 +46,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

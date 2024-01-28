@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ProductService {
     List<ProductDTO> getAll();
     void addToUserBucket(Long productId, String username);
-    void addOrUpdateProduct(ProductDTO dto, List<Image> image);
+    void addOrUpdateProduct(ProductDTO dto);
     ProductDTO getById(Long id);
     void remove(Long id);
 }

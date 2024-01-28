@@ -61,13 +61,8 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public String addProduct(@ModelAttribute("product") ProductDTO product,
-                             HttpServletRequest request) {
-        List<Image> image = new ArrayList<>();
-        image.setTitle(request.getParameter("title"));
-        image.setUrl(request.getParameter("image1"));
-
-        productService.addOrUpdateProduct(product, image);
+    public String addProduct(@ModelAttribute("product") ProductDTO product) {
+        productService.addOrUpdateProduct(product);
         return "redirect:/products";
     }
 

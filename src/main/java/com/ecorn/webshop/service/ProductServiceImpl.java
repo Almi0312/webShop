@@ -53,20 +53,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public void addOrUpdateProduct(ProductDTO productDTO, List<Image> image) {
+    public void addOrUpdateProduct(ProductDTO productDTO) {
         Product product = mapper.toProduct(productDTO);
 
-        if(image != null) {
-            if (product != null) {
-                product.setImages(image);
-                productRepository.save(product);
-            } else {
-                Product newProduct = new Product();
-                newProduct.setTitle(productDTO.getTitle());
-                newProduct.setImages(image);
-                productRepository.save(newProduct);
-            }
-        }
     }
 
     @Override
