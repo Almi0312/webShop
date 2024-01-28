@@ -11,9 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
+
 import com.ecorn.webshop.service.SessionObjectHolder;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,14 +35,21 @@ public class ProductController {
 
     @GetMapping("/products")
     public String list(Model model) {
-        List<ProductDTO> list = productService.getAll();
-        model.addAttribute("product", list);
+        List<Product> list = productService.getAll();
+        model.addAttribute("products", list);
         return "products";
+    }
+
+    @GetMapping("/product/{id}")
+    public String productInfo(@PathVariable(name = "id") Long id, Model model){
+        Product product = productService.getById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("images", product.getImages());
+        return "product_card";
     }
 
     @GetMapping("/products/{id}/bucket")
     public String addBucket(@PathVariable Long id, Principal principal){
-        sessionObjectHolder.addClick();
         if(principal == null){
             return "redirect:/products";
         }
@@ -47,22 +57,23 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @GetMapping("/products/delete/{id}")
-    public String deleteProduct(@PathVariable(name = "id") Long id){
-        productService.remove(id);
-        return "redirect:/products";
-    }
-
     @GetMapping("/products/edit/{id}")
     public String updateProduct(@PathVariable(name = "id") Long id, Model model) {
-        ProductDTO product = productService.getById(id);
+        Product product = productService.getById(id);
         model.addAttribute("product", product);
         return "edit_product";
     }
 
     @PostMapping("/products/save")
-    public String addProduct(@ModelAttribute("product") ProductDTO product) {
-        productService.addOrUpdateProduct(product);
+    public String addProduct(@ModelAttribute("product") Product product,
+                            @RequestParam("image1") MultipartFile image1,
+                            @RequestParam("image2") MultipartFile image2,
+                            @RequestParam("image3") MultipartFile image3) {
+        try {
+            productService.addOrUpdateProduct(product, image1, image2, image3);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         return "redirect:/products";
     }
 
@@ -71,11 +82,20 @@ public class ProductController {
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         model.addAttribute("product", new Product());
+        model.addAttribute("image1", new Image());
+        model.addAttribute("image2", new Image());
+        model.addAttribute("image3", new Image());
         return "new_product";
     }
 
     @GetMapping("/products/{id}")
-    public ProductDTO getById(@PathVariable Long id){
+    public Product getById(@PathVariable Long id){
         return productService.getById(id);
+    }
+
+    @PostMapping("/products/delete/{id}")
+    public String deleteProduct(@PathVariable(name = "id") Long id){
+        productService.remove(id);
+        return "redirect:/products";
     }
 }

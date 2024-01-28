@@ -28,21 +28,22 @@
         Добавить продукт</button>
 </a>
 
-<div class="product-list"></div>
-<div class="product_container">
+<div class="product-list">
+    <div class="product_container">
 
-    <div class="product-card" th:each="produc : ${product}">
-        <p th:text="${produc.id}"></p>
-        <div th:each="imag : ${images}">
-            <img th:src="@{image}" alt="error">
-        </div>
-        <h2 class="product-name" th:text="${produc.title}">Название продукта </h2>
-        <p th:text="${produc.description}">1000 руб.</p>
-        <p class="price" th:text="${produc.price}">1000 руб.</p>
-        <a th:href="@{'/products/'+${produc.id}+'/bucket'}" class="btn-product">Купить</a>
-        <div>
-            <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${produc.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/delete/' + ${produc.id}}"><i class="fa-solid fa-trash"></i></a>
+        <div class="product-card" th:each="product : ${products}">
+            <p th:text="${product.id}"></p>
+            <div th:each="imag : ${images}">
+                <img th:src="@{image}" alt="error">
+            </div>
+            <h2 class="product-name" th:text="${product.title}">Название продукта </h2>
+            <p th:text="${product.description}">1000 руб.</p>
+            <p class="price" th:text="${product.price}">1000 руб.</p>
+            <a th:href="@{'/products/'+${product.id}+'/bucket'}" class="btn-product">Купить</a>
+            <div>
+                <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${product.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/delete/' + ${product.id}}"><i class="fa-solid fa-trash"></i></a>
+            </div>
         </div>
     </div>
 </div>

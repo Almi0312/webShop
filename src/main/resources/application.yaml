@@ -3,13 +3,19 @@ spring:
 #    allow-circular-references: true
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
     show-sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/webshopecorn
     password: 123
     username: postgres
+
   flyway:
     baseline-on-migrate: true
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
 

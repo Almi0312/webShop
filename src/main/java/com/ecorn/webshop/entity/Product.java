@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,10 +30,23 @@ public class Product {
     private String title;
     private String description;
     private BigDecimal price;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
-    private List<Image> images;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private LocalDateTime dateOfCreated;
+    private LocalDateTime dateOfChange;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+    mappedBy = "product")
+    private List<Image> images = new ArrayList<>();
+    private Long previewImageId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category categories;
+
+    @PrePersist
+    private void init(){
+        dateOfCreated = LocalDateTime.now();
+    }
+
+    public void addImageToProduct(Image image){
+        image.setProduct(this);
+        images.add(image);
+    }
 }

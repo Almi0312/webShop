@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">>
+<head>
+    <meta charset="UTF-8">
+    <title>Карточка продукта</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!--STOMP-->
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+    <!--app.js dependance: jquery-->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/product.js"></script>
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<script th:replace="fragments/menu :: scripts"></script>
+
+<div class="product_container">
+
+    <div class="product-card">
+        <h3>Информация о товаре</h3>
+        <p th:text="${product.id}"></p>
+        <div>
+            <img th:src="/api/images/${products.images.get(0)}" heigth="60px"><br>
+            <img th:src="/api/images/${products.images.get(1)?if_exists}" heigth="60px"><br>
+            <img th:src="/api/images/${products.images.get(2)?if_exists}" heigth="60px"><br>
+        </div>
+        <h2 class="product-name" th:text="${product.title}">Название продукта </h2>
+        <p class="price" th:text="${product.price}">1000 руб.</p>
+        <p th:text="${product.description}"></p>
+        <a th:href="@{'/products/'+${product.id}+'/bucket'}" class="btn-product">Купить</a>
+        <div>
+            <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${product.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/delete/' + ${product.id}}"><i class="fa-solid fa-trash"></i></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -59,7 +59,8 @@ create table products (
                           category_id bigint,
                           description varchar(255),
                           title varchar(255),
-                          image oid
+                          image oid,
+                          previewImageId bigint
 );
 
 
@@ -82,7 +83,10 @@ create table product_images (
                         id bigint PRIMARY KEY,
                         product_id bigint,
                         title varchar(255),
-                        url text
+                        size bigint,
+                        contentType text,
+                        isPreviewImage bool,
+                        bytes oid
                             );
 
 

@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
-    List<ProductDTO> getAll();
+    List<Product> getAll();
     void addToUserBucket(Long productId, String username);
-    void addOrUpdateProduct(ProductDTO dto);
-    ProductDTO getById(Long id);
+    void addOrUpdateProduct(Product product, MultipartFile image1,
+                            MultipartFile image2, MultipartFile image3) throws IOException;
+    Product getById(Long id);
     void remove(Long id);
 }

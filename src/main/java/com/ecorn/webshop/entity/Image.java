@@ -22,5 +22,12 @@ public class Image {
             allocationSize = 1)
     private Long id;
     private String title;
-    private String url;
+    private String originalFileName;
+    private Long size;
+    private String contentType;
+    private boolean isPreviewImage;
+    @Lob
+    private byte[] bytes;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    private Product product;
 }
