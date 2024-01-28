@@ -33,9 +33,7 @@
 
     <div class="product-card" th:each="produc : ${product}">
         <p th:text="${produc.id}"></p>
-        <div th:each="image : ${produc.images}">
-            <img th:src=""data:image/jpeg;base64,[тут_код_картинки_в_base64]"@{${image.data}}" alt="Image">
-        </div>
+        <img th:src="@{produc.image1}">
         <h2 class="product-name" th:text="${produc.title}">Название продукта </h2>
         <p th:text="${produc.description}">1000 руб.</p>
         <p class="price" th:text="${produc.price}">1000 руб.</p>

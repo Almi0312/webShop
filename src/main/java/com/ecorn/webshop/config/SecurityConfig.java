@@ -20,12 +20,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * с определенной ролью
  */
 @Configuration
-@RequiredArgsConstructor
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig{
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+
+    public SecurityConfig(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

@@ -1,12 +1,12 @@
 package com.ecorn.webshop.controllers;
 
-import com.ecorn.webshop.convertations.MultipartFileToImageConverter;
 import com.ecorn.webshop.dto.ProductDTO;
 import com.ecorn.webshop.entity.Category;
 import com.ecorn.webshop.entity.Image;
 import com.ecorn.webshop.entity.Product;
 import com.ecorn.webshop.service.CategoryService;
 import com.ecorn.webshop.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -62,8 +62,10 @@ public class ProductController {
 
     @PostMapping("/products/save")
     public String addProduct(@ModelAttribute("product") ProductDTO product,
-                             @RequestParam("image1") MultipartFile multImages1) {
-        Image image = new MultipartFileToImageConverter().convert(multImages1);
+                             HttpServletRequest request) {
+        List<Image> image = new ArrayList<>();
+        image.setTitle(request.getParameter("title"));
+        image.setUrl(request.getParameter("image1"));
 
         productService.addOrUpdateProduct(product, image);
         return "redirect:/products";
