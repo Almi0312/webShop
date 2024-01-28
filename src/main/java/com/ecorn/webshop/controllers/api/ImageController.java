@@ -1,4 +1,4 @@
-package com.ecorn.webshop.controllers;
+package com.ecorn.webshop.controllers.api;
 
 import com.ecorn.webshop.dao.ImageRepository;
 import com.ecorn.webshop.entity.Image;

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "product_images")
 public class Image {
-    private static final String SEQ_NAME = "image_seq";
+    private static final String SEQ_NAME = "product_images_seq";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,

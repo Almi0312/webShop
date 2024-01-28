@@ -40,7 +40,7 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/product/{id}")
     public String productInfo(@PathVariable(name = "id") Long id, Model model){
         Product product = productService.getById(id);
         model.addAttribute("product", product);
@@ -82,9 +82,6 @@ public class ProductController {
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         model.addAttribute("product", new Product());
-        model.addAttribute("image1", new Image());
-        model.addAttribute("image2", new Image());
-        model.addAttribute("image3", new Image());
         return "new_product";
     }
 

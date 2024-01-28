@@ -78,7 +78,6 @@ public class ProductServiceImpl implements ProductService {
 
         Product productFromDb = productRepository.save(product);
         productFromDb.setPreviewImageId(productFromDb.getImages().get(0).getId());
-        productRepository.save(product);
     }
 
     @Override

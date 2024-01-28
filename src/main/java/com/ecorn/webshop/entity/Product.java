@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -30,7 +32,9 @@ public class Product {
     private String title;
     private String description;
     private BigDecimal price;
+    @CreationTimestamp
     private LocalDateTime dateOfCreated;
+    @UpdateTimestamp
     private LocalDateTime dateOfChange;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
     mappedBy = "product")

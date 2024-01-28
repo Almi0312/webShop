@@ -187,6 +187,16 @@ body {
     text-decoration: none;
     margin-top: 10px;
 }
+.product_image{
+    height: 400px;
+    width: 100px;
+}
+
+.product-card-inside{
+    display: flex;
+    justify-content:space-around;
+
+}
 
 .default-btn:hover {
     opacity: 1;

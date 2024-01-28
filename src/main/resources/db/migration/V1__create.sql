@@ -12,6 +12,8 @@ drop sequence if exists user_seq;
 create sequence user_seq start with 1 increment by 1;
 drop sequence if exists image_seq;
 create sequence image_seq start with 1 increment by 1;
+drop sequence if exists product_images_seq;
+create sequence product_images_seq start with 1 increment by 1;
 
 drop table if exists buckets cascade;
 create table buckets (
@@ -39,7 +41,7 @@ create table order_details (
                                order_id bigint not null,
                                product_id bigint not null,
                                comment varchar(255)
-);
+                            );
 
 drop table if exists orders cascade;
 create table orders (
@@ -50,7 +52,7 @@ create table orders (
                         user_id bigint,
                         address varchar(255),
                         status varchar(255) check (status in ('NEW','APPROVED','CANCELED','PAID','CLOSED','RETURNED'))
-);
+                    );
 
 drop table if exists products cascade;
 create table products (
@@ -59,9 +61,11 @@ create table products (
                           category_id bigint,
                           description varchar(255),
                           title varchar(255),
-                          image oid,
-                          previewImageId bigint
-);
+                          previewImageId bigint,
+                          date_of_change timestamp(6),
+                          date_of_created timestamp(6),
+                          preview_image_id bigint
+                            );
 
 
 drop table if exists users cascade;
@@ -73,10 +77,10 @@ create table users (
                        name varchar(255),
                        password varchar(255),
                        phone varchar(255),
-                       role varchar(255) check (role in ('ADMIN','CLIENT','MANAGER','GUEST')),
+                       role varchar(255) check (role in ('ADMIN','CLIENT','MANAGER')),
                        username varchar(255),
                        created timestamp(6)
-);
+                        );
 
 drop table if exists product_images cascade;
 create table product_images (
@@ -84,8 +88,9 @@ create table product_images (
                         product_id bigint,
                         title varchar(255),
                         size bigint,
-                        contentType text,
-                        isPreviewImage bool,
+                        content_type varchar(255),
+                        is_preview_image boolean,
+                        original_file_name varchar(255),
                         bytes oid
                             );
 
