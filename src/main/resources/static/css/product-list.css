@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+#description {
+    resize: none; /* Отключает возможность изменения размеров текстового поля */
+    overflow: auto; /* Добавляет полосы прокрутки, если текст превышает размер поля */
+    height: 60px; /* Задает фиксированную высоту поля */
+    width: 100%;
+    border: none;
+}
+
+.product-block {
+    width: 300px;
+    margin: 20px;
+    padding: 20px 20px;
+    background-color: #fff;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    height: auto;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: #ccc;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.next {
+    right: 0;
+}
+
+.product-details {
+    margin-top: 10px;
+}
+
+.buy-button {
+    padding: 10px 20px;
+    background-color: #1CAC78;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

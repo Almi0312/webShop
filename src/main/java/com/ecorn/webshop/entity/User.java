@@ -21,17 +21,18 @@ public class User {
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME,
             allocationSize = 1)
     private Long id;
+    private String first_name;
+    private String last_name;
     private String name;
-    private String username;
     private String email;
     private String password;
+    private boolean archive;
     @CreationTimestamp
     private LocalDateTime created = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
     private Role role;
     private String address;
-    private boolean archive;
     private String phone;
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Bucket bucket;

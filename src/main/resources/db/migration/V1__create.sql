@@ -39,8 +39,7 @@ create table order_details (
                                amount bigint not null,
                                price numeric(38,2),
                                order_id bigint not null,
-                               product_id bigint not null,
-                               comment varchar(255)
+                               product_id bigint not null
                             );
 
 drop table if exists orders cascade;
@@ -48,9 +47,9 @@ create table orders (
                         id bigint primary key,
                         sum numeric(38,2),
                         created timestamp(6),
+                        address text,
                         last_changed timestamp(6),
                         user_id bigint,
-                        address varchar(255),
                         status varchar(255) check (status in ('NEW','APPROVED','CANCELED','PAID','CLOSED','RETURNED'))
                     );
 
@@ -61,7 +60,6 @@ create table products (
                           category_id bigint,
                           description varchar(255),
                           title varchar(255),
-                          previewImageId bigint,
                           date_of_change timestamp(6),
                           date_of_created timestamp(6),
                           preview_image_id bigint
@@ -71,14 +69,15 @@ create table products (
 drop table if exists users cascade;
 create table users (
                        id bigint primary key,
-                       archive boolean not null,
                        address varchar(255),
                        email varchar(255),
-                       name varchar(255),
+                       first_name varchar(255),
+                       last_name varchar(255),
                        password varchar(255),
                        phone varchar(255),
                        role varchar(255) check (role in ('ADMIN','CLIENT','MANAGER')),
-                       username varchar(255),
+                       name varchar(255),
+                       archive boolean,
                        created timestamp(6)
                         );
 
