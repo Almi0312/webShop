@@ -14,6 +14,8 @@ drop sequence if exists image_seq;
 create sequence image_seq start with 1 increment by 1;
 drop sequence if exists product_images_seq;
 create sequence product_images_seq start with 1 increment by 1;
+drop sequence if exists product_sizes_seq;
+create sequence product_sizes_seq start with 1 increment by 1;
 
 drop table if exists buckets cascade;
 create table buckets (
@@ -80,6 +82,11 @@ create table users (
                        archive boolean,
                        created timestamp(6)
                         );
+drop table if exists products_sizes cascade;
+create table products_sizes (
+                                product_id bigint not null,
+                                size_id bigint not null
+                            );
 
 drop table if exists product_images cascade;
 create table product_images (
@@ -93,10 +100,19 @@ create table product_images (
                         bytes oid
                             );
 
+drop table if exists product_sizes cascade;
+create table product_sizes (
+                                id bigint PRIMARY KEY,
+                                ru_size varchar(10),
+                                inter_size varchar(10)
+);
+
 
 alter table if exists buckets add constraint buckets_user_id_FK foreign key (user_id) references users;
 alter table if exists buckets_products add constraint buckets_product_id_FK foreign key (product_id) references products;
 alter table if exists buckets_products add constraint product_buckets_id_FK foreign key (bucket_id) references buckets;
+alter table if exists products_sizes add constraint product_sizes_id_FK foreign key (size_id) references product_sizes;
+alter table if exists products_sizes add constraint size_products_id_FK foreign key (product_id) references products;
 alter table if exists order_details add constraint order_details_order_id_FK foreign key (order_id) references orders;
 alter table if exists order_details add constraint orders_details_fk_product foreign key (product_id) references products;
 alter table if exists orders add constraint order_user_id_FK foreign key (user_id) references users;

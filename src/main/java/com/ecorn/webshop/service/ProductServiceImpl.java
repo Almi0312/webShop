@@ -2,18 +2,17 @@ package com.ecorn.webshop.service;
 
 import com.ecorn.webshop.convertations.MultipartFileToImageConverter;
 import com.ecorn.webshop.dao.ProductRepository;
-import com.ecorn.webshop.entity.Bucket;
-import com.ecorn.webshop.entity.Image;
-import com.ecorn.webshop.entity.Product;
-import com.ecorn.webshop.entity.User;
+import com.ecorn.webshop.entity.*;
 import com.ecorn.webshop.mapper.ProductMapper;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -24,11 +23,13 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final UserService userService;
     private final BucketService bucketService;
+    private final ProductSizeService productSizeService;
 
-    public ProductServiceImpl(ProductRepository productRepository, UserService userService, BucketService bucketService) {
+    public ProductServiceImpl(ProductRepository productRepository, UserService userService, BucketService bucketService, ProductSizeService productSizeService) {
         this.productRepository = productRepository;
         this.userService = userService;
         this.bucketService = bucketService;
+        this.productSizeService = productSizeService;
     }
 
     @Override
@@ -90,5 +91,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void remove(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public List<ProductSize> saveSizes(List<Long> sizes){
+        return productSizeService.getAllProductSizesById(sizes);
     }
 }

@@ -96,5 +96,16 @@ body {
 }
 
 .input-form{
+    white-space: nowrap;
+}
 
+.size-checkbox{
+    white-space: normal;
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+    background: #fff2e1;
+}
+.input-form.size-checkbox:first-child {
+    margin-right: 4%;
 }

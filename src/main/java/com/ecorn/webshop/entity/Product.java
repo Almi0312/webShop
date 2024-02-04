@@ -7,12 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.engine.jdbc.Size;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -40,9 +43,14 @@ public class Product {
     mappedBy = "product")
     private List<Image> images = new ArrayList<>();
     private Long previewImageId;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category categories;
+    @ManyToMany
+    @JoinTable(name="products_sizes",
+            joinColumns = @JoinColumn(name = "size_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<ProductSize> sizes = new ArrayList<>();
 
     @PrePersist
     private void init(){

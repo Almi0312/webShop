@@ -27,3 +27,12 @@ VALUES (1, 'file1', 1, true, 1478458, 36334, 'image/jpeg', '278428-frederika.jpg
        (5, 'file2', 2, false, 550944,36335 , 'image/jpeg', '1696502273_gas-kvas-com-p-kartinki-lyubie-10.jpg'),
        (6, 'file3', 2, false, 364134,36336 , 'image/jpeg', 'krasivye-kartinki-pandy-na-rabochij-stol-26.jpg');
 ALTER SEQUENCE product_images_seq RESTART WITH 7;
+
+INSERT INTO product_sizes(id, ru_size, inter_size)
+VALUES (1, '42', 'S'),
+       (2, '44-46', 'M'),
+       (3, '48-50', 'L'),
+       (4, '52', 'XL'),
+       (5, '54-56', 'XXL'),
+       (6, '56', '3XL');
+ALTER SEQUENCE product_sizes_seq RESTART With 7

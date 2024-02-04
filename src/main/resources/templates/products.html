@@ -42,14 +42,14 @@
             <button class="next">Next</button>
         </div>
         <div class="product-details">
-            <h3 th:text="${product.title}">Название товара</h3>
+            <a th:href="@{/products/product/{id}(id=${product.id})}"><h3 th:text="${product.title}"></h3></a>
             <p>Ecorn</p>
             <p>Цена</p>
             <p th:text="${product.price}">Цена</p>
             <p>Описание</p>
             <textarea id="description" rows="6" th:text="${product.description}" readonly>Описание</textarea>
             <p>Размер</p>
-            <button class="buy-button" th:href="@{'/products/'+${product.id}+'/bucket'}">Купить</button>
+            <a class="buy-button" th:href="@{/products/{id}/bucket(id=${product.id})}">Купить</a>
         </div>
         <div>
             <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${product.id}}"><i class="fa-solid fa-pen-to-square"></i></a>

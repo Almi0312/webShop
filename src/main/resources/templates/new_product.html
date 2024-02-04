@@ -9,22 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<form th:object="${product}" th:action="@{/products/save}"  method="post" enctype="multipart/form-data">
+<form th:object="${product}" th:action="@{/products/save}" method="post" enctype="multipart/form-data">
     <div class="product-form-container" style="align-content: center">
         <div class="product-form">
-            <h3>Создание нового продукта</h3>
-
+                <h3>Создание нового продукта</h3>
             <div class="header-label-form">
                 <label for="title">Название</label>
-                    <div class="input-form">
-                        <input type="text" id="title" name="title" th:field="*{title}">
-                    </div>
+                <div class="input-form">
+                    <input type="text" id="title" name="title" th:field="*{title}">
+                </div>
             </div>
 
             <div class="header-label-form">
                 <label for="file1">1 фото</label>
                 <div class="input-form">
-                    <input type="file" name="file1" id="file1"  class="form-control">
+                    <input type="file" name="file1" id="file1" class="form-control">
                 </div>
             </div>
 
@@ -45,28 +44,42 @@
             <div class="header-label-form">
                 <label for="price">Цена</label>
                 <div class="input-form">
-                    <input type="number" id="price" th:field="*{price}" >
+                    <input type="number" id="price" th:field="*{price}">
                 </div>
             </div>
 
             <div class="header-label-form">
                 <label for="description">Описание</label>
                 <div class="input-form">
-                    <input type="text" id="description" th:field="*{description}" >
+                    <textarea type="text" id="description" th:field="*{description}"></textarea>
                 </div>
-             </div>
+            </div>
 
             <div class="header-label-form">
                 <label for="categories">Категория</label>
                 <div class="input-form">
-                    <select id="categories" class="form-select" aria-label="Default select example" >
-                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                    <select id="categories" class="form-select" aria-label="Default select example">
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                     </select>
                 </div>
             </div>
 
-            <button class="default-btn" id="send" type="submit" th:size="20">Добавить</button>
+            <div class="header-label-form">
+                <label for="sizes">Размеры</label>
+                <div id="sizes" class="input-form" aria-label="Default select example">
+                    <div class="size-checkbox">
+                        <form th:each="size : ${product_sizes}">
+                            <input type="checkbox" name="product_sizes" th:value="${size.id}">
+                            <span class="size-checkbox" th:text="${size.ruSize}"></span>
+                            <span class="size-checkbox" th:text="${size.interSize}"></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
+            <div class="default-btn">
+                <button id="send" type="submit" th:size="20">Добавить</button>
+            </div>
         </div>
     </div>
 </form>
