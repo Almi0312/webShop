@@ -18,36 +18,23 @@
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <script th:replace="fragments/menu :: scripts"></script>
 
-<div class="product_container" th:if="${product}">
-
-    <div class="product-card">
-        <div>
-            <div>
-                <img th:each="image : ${product.images}" th:src="@{'/api/images/' + ${image}}"><br>
-            </div>
-        </div>
-        <h2 class="product-name" th:text="${product.title}">Название продукта </h2>
-        <p class="price" th:text="${product.price}">1000 руб.</p>
-        <p th:text="${product.description}"></p>
-        <a th:href="@{'/products/'+${product.id}+'/bucket'}" class="btn-product">Купить</a>
-    </div>
-</div>
 <div class="product-card" th:if="${product}">
     <div class="product-info">
         <h2 th:text="${product.title}"></h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod leo non lacus fringilla, at ullamcorper diam malesuada.</p>
+        <p th:text="${product.price}"></p>
+        <p th:text="${product.description}"></p>
         <div class="product-slider">
             <!-- Содержимое слайдера -->
         </div>
     </div>
     <div class="comments-section">
-        <h3>Comments</h3>
+        <h3>Отзывы</h3>
         <div class="comments">
             <!-- Комментарии -->
         </div>
         <div class="comment-input">
             <textarea placeholder="Add a comment"></textarea>
-            <button>Add Comment</button>
+            <button>Добавить отзыв</button>
         </div>
     </div>
 </div>
