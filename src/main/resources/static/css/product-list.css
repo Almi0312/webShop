@@ -28,13 +28,15 @@
 }
 
 .slides {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 5vw);
+    grid-gap: 15px;
 }
 
 .slides img {
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 500px;
 }
 
 .prev,

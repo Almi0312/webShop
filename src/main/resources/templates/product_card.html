@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/product-card.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <script src="/product.js"></script>
+    <script src="/comments.js"></script>
     <script src="/slider.js"></script>
 </head>
 <body>
@@ -23,8 +24,18 @@
         <h2 th:text="${product.title}"></h2>
         <p th:text="${product.price}"></p>
         <p th:text="${product.description}"></p>
-        <div class="product-slider">
-            <!-- Содержимое слайдера -->
+        <div class="product-slider-container">
+            <div class="gallery">
+                <!-- Содержимое слайдера -->
+                    <figure class="gallery__item--1">
+                        <img class="gallery__img" th:src="@{'/api/images/' + ${product.images[0].id}}">
+                    </figure>
+                    <figure class="gallery__item--2">
+                        <img class="gallery__img" th:src="@{'/api/images/' + ${product.images[1].id}}">
+                    </figure>>
+                    <figure class="gallery__item--3">
+                        <img class="gallery__img" th:src="@{'/api/images/' + ${product.images[2].id}}"></figure>
+            </div>
         </div>
     </div>
     <div class="comments-section">

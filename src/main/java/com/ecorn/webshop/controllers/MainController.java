@@ -2,6 +2,7 @@ package com.ecorn.webshop.controllers;
 
 import com.ecorn.webshop.dto.ProductDTO;
 import com.ecorn.webshop.dto.UserDTO;
+import com.ecorn.webshop.entity.User;
 import com.ecorn.webshop.service.SessionObjectHolder;
 import com.ecorn.webshop.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -39,13 +40,14 @@ public class MainController {
     }
 
     @GetMapping("/registration")
-    public String registration(){
+    public String registration(Model model) {
+        model.addAttribute("user", new UserDTO());
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("users") UserDTO dto){
+    public String addUser(@ModelAttribute("user") UserDTO dto){
         userService.save(dto);
-        return "/login";
+        return "login";
     }
 }
