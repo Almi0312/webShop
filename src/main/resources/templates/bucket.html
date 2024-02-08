@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Корзина</title>
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/bucket.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -35,5 +36,31 @@
 <form th:action="@{/bucket}" method="post">
     <button type="submit">Создать заказ</button>
 </form>
+
+
+
+<div class="cart">
+    <div class="cart-header">
+        <h2 class="cart-title">Корзина</h2>
+        <!-- Добавьте иконку корзины или другие элементы управления -->
+    </div>
+    <ul class="cart-items">
+        <!-- Здесь разместите код для отображения товаров в корзине -->
+        <li class="cart-item" th:each="detail : ${bucket.bucketDetails}">
+            <img class="cart-item-image" src="product1.jpg" alt="Product 1">
+            <div class="cart-item-name" th:text="${detail.title}">Product 1</div>
+            <div class="cart-item-price" th:text="${detail.price}">$10.00</div>
+            <div class="" th:text="${detail.sum}"></div>
+            <a href="#">Удалить</a>
+        </li>
+    </ul>
+    <div class="cart-total">
+        <span class="cart-total-label">Итого:</span>
+        <span class="cart-total-price"><b th:text="${bucket.sum}">0</b></span>
+    </div>
+    <div class="cart-actions">
+        <button class="cart-action-button">Оформить заказ</button>
+    </div>
+</div>
 </body>
 </html>

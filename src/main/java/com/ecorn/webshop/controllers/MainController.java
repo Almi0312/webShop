@@ -23,7 +23,6 @@ import java.util.UUID;
  * Главная страница, которая открывается при входе на сайт
  */
 @Controller
-@RequestMapping("/")
 public class MainController {
     @Autowired
     UserService userService;
@@ -48,6 +47,6 @@ public class MainController {
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("user") UserDTO dto){
         userService.save(dto);
-        return "login";
+        return "/login";
     }
 }

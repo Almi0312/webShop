@@ -19,6 +19,23 @@
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <script th:replace="fragments/menu :: scripts"></script>
 
-
+<div class="news-frame">
+    <h3 class="news-frame-title">А у нас вот что..</h3>
+    <ul class="news-frame-list">
+        <div sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')">
+            <h2>Add News</h2>
+            <form th:action="@{/addNews}" th:object="${newNews}" method="post">
+                <label>Название: <input type="text" th:field="*{name}" /></label><br/>
+                <label>Содержание: <input type="text" th:field="*{description}" /></label><br/>
+                <input type="submit" value="Add" />
+            </form>
+        </div>
+        <th:block th:each="news : ${newsList}">
+            <li class="news-frame-item">
+            <a th:href="@{'/news/' + ${news.id}}" th:text="${news.name}"></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
 </body>
 </html>

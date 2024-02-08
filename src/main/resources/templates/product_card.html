@@ -39,15 +39,24 @@
         </div>
     </div>
     <div class="comments-section">
-        <h3>Отзывы</h3>
+        <h3>Добавить комментарий</h3>
         <div class="comments">
             <!-- Комментарии -->
         </div>
         <div class="comment-input">
-            <textarea placeholder="Add a comment"></textarea>
-            <button>Добавить отзыв</button>
+            <form th:action="@{/products/product/{id}/addComment(id=${product.id})}" th:object="${newComment}" method="post">
+                <label>Комментарий: <input type="text" th:field="*{description}" /></label><br/>
+                <input type="submit" value="Add" />
+            </form>
         </div>
     </div>
+    <h2>Комментарии</h2>
+    <ul>
+        <li th:each="comment : ${product.comments}">
+            <p th:text="${comment.description}"></p>
+            <p th:text="${#dates.format(comment.dateCreated, 'yyyy-MM-dd HH:mm:ss')}"></p>
+        </li>
+    </ul>
 </div>
 </body>
 

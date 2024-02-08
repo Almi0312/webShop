@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.engine.jdbc.Size;
@@ -51,6 +52,8 @@ public class Product {
             joinColumns = @JoinColumn(name = "size_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<ProductSize> sizes = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductComment> comments;
 
     @PrePersist
     private void init(){

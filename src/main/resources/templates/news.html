@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li th:each="news : ${newsList}">
+            <h3 th:text="${news.name}"></h3>
+            <p th:text="${news.description}"></p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

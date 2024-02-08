@@ -1,15 +1,18 @@
 .reg-container {
     max-width: 500px;
-    margin: 30px auto;
-    padding: 30px 30px 30px 30px;
+    margin: 0 auto;
+    padding: 10px 30px 30px 30px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+body{
+    background-color: #E6E6FA;
+}
 
 .reg-container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .reg-form-group {
@@ -21,15 +24,13 @@
 
 .reg-form-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    padding: 0 10px 0 0;
+    float: left;
+    width: 200px;
+    height: 10px;
 
 }
 
 .reg-form-group input {
-    width: 50%;
-    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -39,17 +40,19 @@
     margin: 0 auto;
     color: #fff;
     cursor: pointer;
-    width: 70px;
+    width: 150px;
+    height: 30px;
 }
 
 .reg-submit a{
-    padding: 10px;
     border-radius: 4px;
     background-color: #4CAF50;
     margin: 0 auto;
     color: #fff;
     cursor: pointer;
     width: 100px;
+    font-family: 'Kaushan', sans-serif;
+    font-size: 14px;
 }
 
 .reg-form-group input[type="submit"]:hover {
@@ -59,4 +62,10 @@
 
 .reg-submit a:hover {
     background-color: #45a049;
+}
+
+.reg-img{
+    width: 350px;
+    height: 150px;
+    margin: 20px 38% 0 38%;
 }

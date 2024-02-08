@@ -98,4 +98,9 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductSize> saveSizes(List<Long> sizes){
         return productSizeService.getAllProductSizesById(sizes);
     }
+
+    @Override
+    public void save(Product product) {
+        productRepository.save(product);
+    }
 }

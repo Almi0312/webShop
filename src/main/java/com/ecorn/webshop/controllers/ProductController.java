@@ -1,10 +1,7 @@
 package com.ecorn.webshop.controllers;
 
 import com.ecorn.webshop.dto.ProductDTO;
-import com.ecorn.webshop.entity.Category;
-import com.ecorn.webshop.entity.Image;
-import com.ecorn.webshop.entity.Product;
-import com.ecorn.webshop.entity.ProductSize;
+import com.ecorn.webshop.entity.*;
 import com.ecorn.webshop.service.CategoryService;
 import com.ecorn.webshop.service.ProductService;
 import com.ecorn.webshop.service.ProductSizeService;
@@ -48,7 +45,18 @@ public class ProductController {
     public String productInfo(@PathVariable(name = "id") Long id, Model model){
         Product product = productService.getById(id);
         model.addAttribute("product", product);
+        model.addAttribute("newComment", new ProductComment());
         return "product_card";
+    }
+
+    @PostMapping("/products/product/{id}/addComment")
+    public String addComment(@PathVariable("id") Long id){
+        Product product = productService.getById(id);
+        ProductComment comment = new ProductComment();
+        comment.setProduct(product);
+        product.getComments().add(comment);
+        productService.save(product);
+        return "redirect:/products/product/{id}";
     }
 
     @GetMapping("/products/{id}/bucket")

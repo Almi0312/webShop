@@ -16,6 +16,10 @@ drop sequence if exists product_images_seq;
 create sequence product_images_seq start with 1 increment by 1;
 drop sequence if exists product_sizes_seq;
 create sequence product_sizes_seq start with 1 increment by 1;
+drop sequence if exists news_seq;
+create sequence news_seq start with 1 increment by 1;
+drop sequence if exists product_comment_seq;
+create sequence product_comment_seq start with 1 increment by 1;
 
 drop table if exists buckets cascade;
 create table buckets (
@@ -108,6 +112,24 @@ create table product_sizes (
 );
 
 
+drop table if exists news cascade;
+create table news (
+                               id bigint PRIMARY KEY,
+                               name varchar(200),
+                               description text,
+                               date_created timestamp(6)
+);
+
+drop table if exists product_comments cascade;
+create table product_comments (
+                               id bigint PRIMARY KEY,
+                               user_id bigint,
+                               description text,
+                               product_id bigint,
+                               date_created timestamp(6)
+);
+
+
 alter table if exists buckets add constraint buckets_user_id_FK foreign key (user_id) references users;
 alter table if exists buckets_products add constraint buckets_product_id_FK foreign key (product_id) references products;
 alter table if exists buckets_products add constraint product_buckets_id_FK foreign key (bucket_id) references buckets;
@@ -118,3 +140,5 @@ alter table if exists order_details add constraint orders_details_fk_product for
 alter table if exists orders add constraint order_user_id_FK foreign key (user_id) references users;
 alter table if exists products add constraint products_category_id_FK foreign key (category_id) references categories;
 alter table if exists product_images add constraint prod_images_prod_id foreign key (product_id) references products;
+alter table if exists product_comments add constraint prod_comment_prod_id foreign key (product_id) references products;
+alter table if exists product_comments add constraint prod_comment_user_id foreign key (user_id) references users;

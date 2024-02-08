@@ -19,4 +19,5 @@ public interface ProductService {
     Product getById(Long id);
     void remove(Long id);
     List<ProductSize> saveSizes(List<Long> sizes);
+    void save(Product product);
 }

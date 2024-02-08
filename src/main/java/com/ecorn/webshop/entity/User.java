@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -38,4 +39,6 @@ public class User {
     private String phone;
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Bucket bucket;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<ProductComment> comments;
 }

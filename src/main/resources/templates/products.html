@@ -31,7 +31,37 @@
         Добавить продукт</button>
 </a>
 
-
+<!--<div class="col-md-8 products">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-4">-->
+<!--            <div class="product" th:each="product : ${products}">-->
+<!--                <div class="slider">-->
+<!--                    <div class="slides" th:each="image : ${product.images}">-->
+<!--                        <img th:src="@{'/api/images/' + ${image.id}}">-->
+<!--                    </div>-->
+<!--                    <button class="prev">Previous</button>-->
+<!--                    <button class="next">Next</button>-->
+<!--                </div>-->
+<!--                <div class="product-name">-->
+<!--                    <a th:href="@{/products/product/{id}(id=${product.id})}"><h3 th:text="${product.title}"></h3></a>-->
+<!--                </div>-->
+<!--                <div class="product-price">-->
+<!--                    <p type="number" id="price" th:text="${product.price}">-->
+<!--                </div>-->
+<!--                <div class="product-size">-->
+<!--                    <select id="size" class="form-select" aria-label="Default select example">&ndash;&gt;-->
+<!--                        <option th:each="size : ${product.sizes}" th:value="${size.id}" th:text="${size.ruSize}"></option>&ndash;&gt;-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <button class="buy-button">Купить</button>-->
+<!--                <div>-->
+<!--                    <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${product.id}}"><i class="fa-solid fa-pen-to-square"></i></a>-->
+<!--                    <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/delete/' + ${product.id}}"><i class="fa-solid fa-trash"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="container">
     <div class="product-block" th:each="product : ${products}">
         <div class="slider">
@@ -44,11 +74,16 @@
         <div class="product-details">
             <a th:href="@{/products/product/{id}(id=${product.id})}"><h3 th:text="${product.title}"></h3></a>
             <p>Ecorn</p>
-            <p>Цена</p>
-            <p th:text="${product.price}">Цена</p>
-            <p>Описание</p>
-            <textarea id="description" rows="6" th:text="${product.description}" readonly>Описание</textarea>
-            <p>Размер</p>
+            <div>
+                <label for="price">Цена</label>
+                    <p type="number" id="price" th:text="${product.price}">
+            </div>
+            <div>
+                <label for="size">Размер</label>
+                    <select id="size" class="form-select" aria-label="Default select example">
+                        <option th:each="size : ${product.sizes}" th:value="${size.id}" th:text="${size.ruSize}"></option>
+                    </select>
+            </div>
             <a class="buy-button" th:href="@{/products/{id}/bucket(id=${product.id})}">Купить</a>
         </div>
         <div>
