@@ -1,10 +1,11 @@
 .cart {
-    width: 400px;
+    width: 500px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
 .cart-header {
@@ -17,6 +18,7 @@
 .cart-title {
     font-size: 24px;
     font-weight: bold;
+    text-align: center;
 }
 
 .cart-items {
@@ -46,6 +48,10 @@
 
 .cart-item-price {
     font-weight: bold;
+}
+
+.cart-item-sum{
+
 }
 
 .cart-total {

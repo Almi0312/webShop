@@ -37,7 +37,9 @@ public class ProductController {
     @GetMapping("/products")
     public String list(Model model) {
         List<Product> list = productService.getAll();
+        List<Category> list2 = categoryService.getAll();
         model.addAttribute("products", list);
+        model.addAttribute("categories", list2);
         return "products";
     }
 
@@ -85,14 +87,12 @@ public class ProductController {
     public String addProduct(@ModelAttribute("product") Product product,
                              @RequestParam("file1") MultipartFile image1,
                              @RequestParam("file2") MultipartFile image2,
-                             @RequestParam("file3") MultipartFile image3,
-                             @RequestParam("product_sizes") List<Long> productSized) {
+                             @RequestParam("file3") MultipartFile image3) {
         try {
             productService.addOrUpdateProduct(product, image1, image2, image3);
         }catch (IOException e){
             e.printStackTrace();
         }
-        product.setSizes(productSizeService.getAllProductSizesById(productSized));
         return "redirect:/products";
     }
 

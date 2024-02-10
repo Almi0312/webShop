@@ -68,7 +68,8 @@ create table products (
                           title varchar(255),
                           date_of_change timestamp(6),
                           date_of_created timestamp(6),
-                          preview_image_id bigint
+                          preview_image_id bigint,
+                          stock int
                             );
 
 

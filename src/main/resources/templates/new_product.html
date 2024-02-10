@@ -69,7 +69,7 @@
                 <div id="sizes" class="input-form" aria-label="Default select example">
                     <div class="size-checkbox">
                         <form th:each="size : ${product_sizes}">
-                            <input type="checkbox" name="product_sizes" th:value="${size.id}">
+                            <input type="checkbox" name="product_sizes" id="product_sizes" th:value="${size.id}">
                             <span class="size-checkbox" th:text="${size.ruSize}"></span>
                             <span class="size-checkbox" th:text="${size.interSize}"></span>
                         </form>

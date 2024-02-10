@@ -42,11 +42,14 @@
             <label for="address">Адрес:</label>
             <input type="text" id="address" name="address" th:field="*{address}">
         </div>
-        <div class="reg-form-group">
-            <input type="submit" value="Зарегистрироваться">
-        </div>
+            <div class="reg-form-group">
+                <button class="reg-submit sub"><a type="submit" th:href="@{/}">Вернуться</a></button>
+                <button class="reg-submit" type="submit">Зарегистрироваться</button>
+            </div>
     </form>
 </div>
-
+<footer style="margin: 70px 0 0 0">
+    <p>&copy; 2024 Ecorn Store. All rights reserved.</p>
+</footer>
 </body>
 </html>

@@ -13,19 +13,96 @@
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <script th:replace="fragments/menu :: scripts"></script>
 
-<table style="border: 1px">
+<table style="border: 1px; display:flex; justify-content: center;
+padding: 20px 0 0 0">
     <tr>
-        <td>Name</td>
+        <td>Логин</td>
         <td>Email</td>
-        <td>Role</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Адресс</td>
+        <td>Изменить</td>
+        <td>Удалить</td>
     </tr>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.username}">Testname</td>
-        <td th:text="${user.email}">Testmail</td>
-        <td th:text="${user.role}">Testrole</td>
+<!--    <tr th:each="user : ${users}">-->
+<!--        <td th:text="${user.username}">Testname</td>-->
+<!--        <td th:text="${user.email}">Testmail</td>-->
+<!--        <td th:text="${user.role}">Testrole</td>-->
+<!--    </tr>-->
+    <tr>
+        <td >admin</td>
+        <td >EcornAdmin@yandex.ru</td>
+        <td >Александр</td>
+        <td >Минаев</td>
+        <td ></td>
+        <td ></td>
+        <td ></td>
+    </tr>
+    <tr>
+        <td >manager</td>
+        <td >ecornShop@yandex.ru</td>
+        <td >Юлия</td>
+        <td >Шайхуллина</td>
+        <td ></td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    <tr>
+        <td >client</td>
+        <td >client@yandex.ru</td>
+        <td >Кирилл</td>
+        <td >Боровой</td>
+        <td ></td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    <tr>
+        <td >besti34</td>
+        <td >ostapova34@yandex.ru</td>
+        <td >Жанна</td>
+        <td >Остапова</td>
+        <td >Рязанская обл.,г. Рязань, ул. Октября, д. 34, кв. 3</td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    <tr>
+        <td >nyasja</td>
+        <td >fedorova23@mail.ru</td>
+        <td >Екатерина</td>
+        <td >Федорова</td>
+        <td >г. Санкт-Петербург, ул. Звонарева, д. 45, кв. 84</td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    <tr>
+        <td >dimple</td>
+        <td >korneeva25@yandex.ru</td>
+        <td >Юлия</td>
+        <td >Корнеева</td>
+        <td >г. Санкт-Петербург, ул. Советская, д. 85, кв. 3</td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    <tr>
+        <td >teatre</td>
+        <td >chaicovs@yandex.ru</td>
+        <td >Людмила</td>
+        <td >Копытина</td>
+        <td >г. Санкт-Петербург, ул. Советская, д. 32, кв. 6</td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    <tr>
+        <td >alice33</td>
+        <td >kiseleva33@yandex.ru</td>
+        <td >Алиса</td>
+        <td >Киселева</td>
+        <td >Саратовская обл., г. Саратов, Кировский проспект, д. 6, кв. 14</td>
+        <td> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td> <a href="#"><i class="fa-solid fa-trash"></i></a></td>
     </tr>
 </table>
-<a th:href="@{/users/new}">Add new</a>
+<a style="display: flex; justify-content: center" th:href="@{/users/new}">Добавить нового</a>
 
 </body>
 </html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add News</title>
+</head>
+<body>
+
+<form th:action="@{/addNews}" th:object="${newNews}" method="post">
+    <label>Название: <input type="text" th:field="*{name}" /></label><br/>
+    <label>Содержание: <textarea type="text" th:field="*{description}"></textarea></label><br/>
+    <input type="submit" value="Add" />
+</form>
+</body>
+</html>

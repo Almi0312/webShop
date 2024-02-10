@@ -27,49 +27,37 @@
 <script th:replace="fragments/menu :: scripts"></script>
 
 <a class="btd-add-new-product" th:href="@{products/new_product}">
-    <button sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" type="button">
+    <button sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" type="button" style="
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;">
         Добавить продукт</button>
 </a>
 
-<!--<div class="col-md-8 products">-->
-<!--    <div class="row">-->
-<!--        <div class="col-sm-4">-->
-<!--            <div class="product" th:each="product : ${products}">-->
-<!--                <div class="slider">-->
-<!--                    <div class="slides" th:each="image : ${product.images}">-->
-<!--                        <img th:src="@{'/api/images/' + ${image.id}}">-->
-<!--                    </div>-->
-<!--                    <button class="prev">Previous</button>-->
-<!--                    <button class="next">Next</button>-->
-<!--                </div>-->
-<!--                <div class="product-name">-->
-<!--                    <a th:href="@{/products/product/{id}(id=${product.id})}"><h3 th:text="${product.title}"></h3></a>-->
-<!--                </div>-->
-<!--                <div class="product-price">-->
-<!--                    <p type="number" id="price" th:text="${product.price}">-->
-<!--                </div>-->
-<!--                <div class="product-size">-->
-<!--                    <select id="size" class="form-select" aria-label="Default select example">&ndash;&gt;-->
-<!--                        <option th:each="size : ${product.sizes}" th:value="${size.id}" th:text="${size.ruSize}"></option>&ndash;&gt;-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--                <button class="buy-button">Купить</button>-->
-<!--                <div>-->
-<!--                    <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/edit/' + ${product.id}}"><i class="fa-solid fa-pen-to-square"></i></a>-->
-<!--                    <a sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{'/products/delete/' + ${product.id}}"><i class="fa-solid fa-trash"></i></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div>
+    <div class="search">
+        <form th:action="@{/}">
+            <input type="text" name="keyword" id="keyword" size="30" th:value="${keyword}" required/>
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+    <div class="category" th:each="category : ${categories}">
+        <a href="#" th:text="${category.name}"></a>
+    </div>
+</div>
+
 <div class="container">
     <div class="product-block" th:each="product : ${products}">
         <div class="slider">
             <div class="slides" th:each="image : ${product.images}">
                 <img th:src="@{'/api/images/' + ${image.id}}">
             </div>
-            <button class="prev">Previous</button>
-            <button class="next">Next</button>
+            <button class="prev"><</button>
+            <button class="next">></button>
         </div>
         <div class="product-details">
             <a th:href="@{/products/product/{id}(id=${product.id})}"><h3 th:text="${product.title}"></h3></a>

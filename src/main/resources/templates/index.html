@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"
-      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -19,23 +19,32 @@
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <script th:replace="fragments/menu :: scripts"></script>
 
-<div class="news-frame">
-    <h3 class="news-frame-title">А у нас вот что..</h3>
-    <ul class="news-frame-list">
-        <div sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')">
-            <h2>Add News</h2>
-            <form th:action="@{/addNews}" th:object="${newNews}" method="post">
-                <label>Название: <input type="text" th:field="*{name}" /></label><br/>
-                <label>Содержание: <input type="text" th:field="*{description}" /></label><br/>
-                <input type="submit" value="Add" />
-            </form>
+<div>
+    <section class="news-feed">
+        <div class="news-item">
+            <div sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')">
+                <button class="buy-button" th:href="@{/addNew}">Добавить новость</button>
+            </div>
+            <h3>А у нас вот что..</h3>
+            <ul th:each="news : ${newsList}">
+                    <li class="news-frame-item">
+                        <a th:href="@{'/news/' + ${news.id}}" th:text="${news.name}"></a>
+                    </li>
+            </ul>
         </div>
-        <th:block th:each="news : ${newsList}">
-            <li class="news-frame-item">
-            <a th:href="@{'/news/' + ${news.id}}" th:text="${news.name}"></a>
-            </li>
-        </th:block>
-    </ul>
+    </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Добро пожаловать в мир моды с Ecorn!</h1>
+            <p>Уникальная вышивка на любой части твоей одежды</p>
+            <a href="#" class="btn">Успей купить</a>
+        </div>
+    </section>
+    <br>
+    <br>
+    <footer>
+        <p>&copy; 2024 Ecorn Store. All rights reserved.</p>
+    </footer>
 </div>
 </body>
 </html>

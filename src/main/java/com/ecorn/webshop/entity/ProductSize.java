@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,5 +29,5 @@ public class ProductSize {
     @Column(name = "inter_size")
     private String interSize;
     @ManyToMany(mappedBy = "sizes")
-    private List<Product> product;
+    private List<Product> product = new ArrayList<>();
 }

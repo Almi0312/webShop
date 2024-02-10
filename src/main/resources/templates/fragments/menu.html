@@ -23,8 +23,10 @@
                 <a class="nav__link" th:href="@{/products}">Каталог</a>
                 <a class="nav__link" sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{/users}">Пользователи</a>
                 <a class="nav__link" sec:authorize="isAuthenticated()" th:href="@{/bucket}">Корзина</a>
-                <a class="nav__link" >О нас</a>
-                <a class="nav__link" >Контакты</a>
+                <a class="nav__link" th:href="@{/onas}" >О нас</a>
+                <a class="nav__link" th:href="@{/contacts}" >Контакты</a>
+                <a class="nav__link" sec:authorize="hasAnyAuthority('ADMIN', 'CLIENT')" th:href="@{/orders}">Мои заказы</a>
+                <a class="nav__link" sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')" th:href="@{/orders}">Заказы</a>
             </nav>
             <div sec:authorize="isAuthenticated()">
                 <div>
@@ -42,12 +44,6 @@
         </div>
     </div>
 </header>
-<div class="search">
-    <form th:action="@{/}">
-        <input type="text" name="keyword" id="keyword" size="30" th:value="${keyword}" required/>
-        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-</div>
 
 <th:block th:fragment="scripts">
     <script type="text/javascript">

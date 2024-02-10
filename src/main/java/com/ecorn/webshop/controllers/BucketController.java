@@ -1,6 +1,7 @@
 package com.ecorn.webshop.controllers;
 
 import com.ecorn.webshop.dto.BucketDTO;
+import com.ecorn.webshop.entity.Product;
 import com.ecorn.webshop.service.BucketService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

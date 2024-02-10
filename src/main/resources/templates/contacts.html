@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/cont.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!--STOMP-->
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<script th:replace="fragments/menu :: scripts"></script>
+
+<div class="contact-section">
+    <p>Если у вас есть вопросы или вам нужна помощь,
+    <p>Либо вам нужно заказать что то особенное и не такое, что представлено в ассортименте, то</p>
+    <p>не стесняйтесь связаться с нами. Мы всегда готовы помочь вам и обсудить ваш выбор!</p>
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Адрес: 123 ул. Примерная, Санкт-Петербург, Россия</p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <p>Email: ecornShop@yandex.com</p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p>Телефон: +79873255104</p>
+        </div>
+        <div class="contact-item">
+            <i class="bi bi-instagram"></i>
+        </div>
+    </div>
+</div>
+<footer style="margin: 300px 0 0 0">
+    <p>&copy; 2024 Ecorn Store. All rights reserved.</p>
+</footer>
+</body>
+</html>

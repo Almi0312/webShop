@@ -53,7 +53,7 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<ProductSize> sizes = new ArrayList<>();
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductComment> comments;
+    private List<ProductComment> comments = new ArrayList<>();
 
     @PrePersist
     private void init(){

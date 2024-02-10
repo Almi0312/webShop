@@ -13,20 +13,25 @@ values (1, 'Худи'),
        (5, 'Лонгсливы');
 ALTER SEQUENCE categories_seq RESTART WITH 6;
 
+
 INSERT INTO products (id, title, price, category_id, description, preview_image_id)
-values (1, 'Худи Nike', 3999.0, 1, 'Топовое худи с вышитой эмблемой найк', 1),
-       (2, 'Худи с Барни', 2999.0, 1, 'Очень приятное к телу худи с мишкой Барни. Героем мультиков нашего детства', 2);
+values (1, 'Футболка "Джерри"', 1600.00, 3, 'Топовое худи с вышитой эмблемой найк', 1),
+       (2, 'Лонгслив "Печеньки"', 3600, 5, 'Приятный к телу лонгслив. 100% хлопок. 100% вышивки и никаких рисунков', 2),
+       (3, 'Худи "Лапшичка"', 2999.0, 1, 'd', 5),
+       (4, 'Футболка "На ручки"', 1800, 3, 'd', 6);
+ALTER SEQUENCE product_seq RESTART WITH 5;
 
-ALTER SEQUENCE product_seq RESTART WITH 3;
 
-INSERT INTO product_images (id, title, product_id, is_preview_image, size, bytes, content_type, original_file_name)
-VALUES (1, 'file1', 1, true, 1478458, 36334, 'image/jpeg', '278428-frederika.jpg'),
-       (2, 'file2', 1, false, 550944,36335 , 'image/jpeg', '1696502273_gas-kvas-com-p-kartinki-lyubie-10.jpg'),
-       (3, 'file3', 1, false, 364134,36336 , 'image/jpeg', 'krasivye-kartinki-pandy-na-rabochij-stol-26.jpg'),
-       (4, 'file1', 2, true, 1478458, 36334, 'image/jpeg', '278428-frederika.jpg'),
-       (5, 'file2', 2, false, 550944,36335 , 'image/jpeg', '1696502273_gas-kvas-com-p-kartinki-lyubie-10.jpg'),
-       (6, 'file3', 2, false, 364134,36336 , 'image/jpeg', 'krasivye-kartinki-pandy-na-rabochij-stol-26.jpg');
+INSERT INTO product_images (id, product_id, title,size, content_type, is_preview_image, original_file_name, bytes)
+VALUES  (1,1,'file1',512616,'image/jpeg',true,'джерри найк2.jpg',42680),
+        (2,2,'file1',396955,'image/jpeg',true,'печенька3.jpg',42681),
+        (3,2,'file2',422391,'image/jpeg',false,'печенька2.jpg',42682),
+        (4,2,'file3',429646,'image/jpeg',false,'печенька1.jpg',42683),
+        (5,3,'file1',223668,'image/jpeg',true,'Любовь.jpg',42684),
+        (6,4,'file1',931606,'image/jpeg',true,'на ручки2.jpg',42685);
+
 ALTER SEQUENCE product_images_seq RESTART WITH 7;
+
 
 INSERT INTO product_sizes(id, ru_size, inter_size)
 VALUES (1, '42', 'S'),
@@ -35,4 +40,14 @@ VALUES (1, '42', 'S'),
        (4, '52', 'XL'),
        (5, '54-56', 'XXL'),
        (6, '56', '3XL');
-ALTER SEQUENCE product_sizes_seq RESTART With 7
+ALTER SEQUENCE product_sizes_seq RESTART WITH 7;
+
+INSERT INTO products_sizes(product_id, size_id)
+VALUES (1,1),(1,2),(1,3),(1,4),(1,5),
+       (2,1), (2,2),(2,3),(2,4),(2,5),
+       (3,1),(3,2),(3,3),(3,4),(3,5),
+       (4,1),(4,2),(4,3),(4,4),(4,5);
+ALTER SEQUENCE product_sizes_seq RESTART WITH 21;
+
+
+

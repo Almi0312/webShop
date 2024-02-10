@@ -13,32 +13,6 @@
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <script th:replace="fragments/menu :: scripts"></script>
 
-<h2>Ваша корзина</h2>
-<h3>Вся сумма -> <b th:text="${bucket.sum}">0</b></h3>
-
-<table border="1" align="center">
-    <tr>
-        <td>Название</td>
-        <td>Количество</td>
-        <td>Цена</td>
-        <td>Сумма</td>
-        <td></td>
-    </tr>
-    <tr th:each="detail : ${bucket.bucketDetails}">
-        <td th:text="${detail.title}"></td>
-        <td th:text="${detail.amount}"></td>
-        <td th:text="${detail.price}"></td>
-        <td th:text="${detail.sum}"></td>
-        <td><a href="#">Удалить</a></td>
-    </tr>
-</table>
-
-<form th:action="@{/bucket}" method="post">
-    <button type="submit">Создать заказ</button>
-</form>
-
-
-
 <div class="cart">
     <div class="cart-header">
         <h2 class="cart-title">Корзина</h2>
@@ -47,10 +21,15 @@
     <ul class="cart-items">
         <!-- Здесь разместите код для отображения товаров в корзине -->
         <li class="cart-item" th:each="detail : ${bucket.bucketDetails}">
-            <img class="cart-item-image" src="product1.jpg" alt="Product 1">
-            <div class="cart-item-name" th:text="${detail.title}">Product 1</div>
-            <div class="cart-item-price" th:text="${detail.price}">$10.00</div>
-            <div class="" th:text="${detail.sum}"></div>
+            <div>
+                <div class="cart-item-name" th:text="${detail.title}"></div>
+                <div class="cart-item-price" th:text="${detail.price}"></div>
+                <div style="display: inline; padding: 0 0 10px 0">
+                    <label for="amount">Кол-во</label>
+                    <div class="cart-item-amount" id="amount" th:text="${detail.amount}"></div>
+                </div>
+            </div>
+            <div class="cart-item-sum" th:text="${detail.sum}"></div>
             <a href="#">Удалить</a>
         </li>
     </ul>
@@ -62,5 +41,8 @@
         <button class="cart-action-button">Оформить заказ</button>
     </div>
 </div>
+<footer style="margin: 100px 0 0 0">
+    <p>&copy; 2024 Ecorn Store. All rights reserved.</p>
+</footer>
 </body>
 </html>

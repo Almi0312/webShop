@@ -38,6 +38,16 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping("/onas")
+    public String onas(){
+        return "onas";
+    }
+
+    @GetMapping("/contacts")
+    public String contacts(){
+        return "contacts";
+    }
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("user", new UserDTO());

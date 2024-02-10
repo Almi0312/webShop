@@ -24,6 +24,11 @@ public class OrderServiceImpl implements OrderService {
         sendIntegrationNotify(savedOrder);
     }
 
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
     private void sendIntegrationNotify(Order order){
         OrderIntegrationDTO dto = new OrderIntegrationDTO();
         dto.setUsername(order.getUser().getName());

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">>
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Карточка продукта</title>
@@ -32,11 +32,12 @@
                     </figure>
                     <figure class="gallery__item--2">
                         <img class="gallery__img" th:src="@{'/api/images/' + ${product.images[1].id}}">
-                    </figure>>
+                    </figure>
                     <figure class="gallery__item--3">
                         <img class="gallery__img" th:src="@{'/api/images/' + ${product.images[2].id}}"></figure>
             </div>
         </div>
+        <a class="buy-button" th:href="@{/products/{id}/bucket(id=${product.id})}">Купить</a>
     </div>
     <div class="comments-section">
         <h3>Добавить комментарий</h3>
@@ -45,7 +46,7 @@
         </div>
         <div class="comment-input">
             <form th:action="@{/products/product/{id}/addComment(id=${product.id})}" th:object="${newComment}" method="post">
-                <label>Комментарий: <input type="text" th:field="*{description}" /></label><br/>
+                <label>Комментарий: <input type="text" th:field="*{description}"></label><br/>
                 <input type="submit" value="Add" />
             </form>
         </div>
@@ -54,7 +55,6 @@
     <ul>
         <li th:each="comment : ${product.comments}">
             <p th:text="${comment.description}"></p>
-            <p th:text="${#dates.format(comment.dateCreated, 'yyyy-MM-dd HH:mm:ss')}"></p>
         </li>
     </ul>
 </div>

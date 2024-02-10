@@ -39,6 +39,12 @@ public class NewsController {
         return "index";
     }
 
+    @GetMapping("/addNew")
+    public String addNew(Model model){
+        model.addAttribute("newNews", new News());
+        return "addNew";
+    }
+
     @PostMapping("/addNews")
     public String addNews(@ModelAttribute("newNews") News newNews) {
         newsRepository.save(newNews);

@@ -1,13 +1,27 @@
 .reg-container {
     max-width: 500px;
     margin: 0 auto;
-    padding: 10px 30px 30px 30px;
+    padding: 30px 30px 30px 30px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.log-container {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 50px 30px 30px 30px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 body{
     background-color: #E6E6FA;
+}
+.log-container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 0 0 20px 0;
 }
 
 .reg-container h2 {
@@ -25,7 +39,7 @@ body{
 .reg-form-group label {
     display: block;
     float: left;
-    width: 200px;
+    width: 100px;
     height: 10px;
 
 }
@@ -35,24 +49,31 @@ body{
     border-radius: 4px;
 }
 
-.reg-form-group input[type="submit"] {
+.reg-submit{
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
     background-color: #4CAF50;
+    padding: 10px;
     margin: 0 auto;
     color: #fff;
+    border: none;
     cursor: pointer;
-    width: 150px;
-    height: 30px;
+}
+
+.reg-submit sub{
+    width: 75px;
+}
+
+.reg-submit:hover { background: rgb(53, 167, 110); }
+.reg-submit:active {
+    background: rgb(33, 147, 90);
+    box-shadow: 0 3px rgb(33, 147, 90) inset;
 }
 
 .reg-submit a{
-    border-radius: 4px;
-    background-color: #4CAF50;
-    margin: 0 auto;
-    color: #fff;
-    cursor: pointer;
-    width: 100px;
-    font-family: 'Kaushan', sans-serif;
-    font-size: 14px;
+    text-decoration: none;
+    color: white;
 }
 
 .reg-form-group input[type="submit"]:hover {
@@ -68,4 +89,10 @@ body{
     width: 350px;
     height: 150px;
     margin: 20px 38% 0 38%;
+}
+
+footer{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
 }
